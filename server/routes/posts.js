@@ -1,10 +1,10 @@
 import express from 'express';
+import { getPosts } from '../controllers/posts';
+
 
 const router = express.Router();
 
 // localhost:5000/posts
-router.get('/', (req, res) => {
-    res.send('THIS WORK!');
-});
+router.get('/', getPosts);
 
 export default router;
