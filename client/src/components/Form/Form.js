@@ -19,7 +19,7 @@ const Form = ({ currentId, setCurrentId})=> {
         if(post) setPostData(post);
     }, [post])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if(currentId) {

@@ -1,8 +1,9 @@
-// import express from 'express';
+import express from 'express';
 import mongoose from 'mongoose';
+
 import PostMessage from "../models/postMessage.js";
 
-// const router = express.Router();
+const router = express.Router();
 
 export const getPosts = async (req, res) => {
     try {
@@ -16,9 +17,9 @@ export const getPosts = async (req, res) => {
 }
 
 export const createPost = async (req, res) => {
-    const post = req.body;
+    const { title, message, selectedFile, creator, tags } = req.body;
 
-    const newPost = new PostMessage(post);
+    const newPost = new PostMessage({ title, message, selectedFile, creator, tags })
 
     try {
         await newPost.save();
