@@ -7,7 +7,10 @@ export const getPosts = () => async (dispatch) => {
   try {
     const { data } = await api.fetchPosts();
 
-    dispatch({ type: FETCH_ALL, payload: data });
+    dispatch({ type: FETCH_ALL,
+      headers: {"Access-Control-Allow-Origin": "*"},
+      // headers: {'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'},
+      payload: data });
   } catch (error) {
     console.log(error.message);
   }
