@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Avatar, Button, Paper, Grid, Typography, Container, TextField} from '@material-ui/core';
+import { Avatar, Button, Paper, Grid, Typography, Container} from '@material-ui/core';
 import { GoogleLogin } from 'react-google-login';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -8,6 +8,7 @@ import Icon from './icon';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from './styles';
 import Input from './Input';
+import { AUTH } from '../../constants/actionTypes';
 import { signin, signup } from '../../actions/auth';
 
 const initialState = { firstName: '', lastName: '',email: '', password: '', confirmPassword: ''};
@@ -47,7 +48,7 @@ const Auth = () => {
         const token = res?.tokenId;
 
         try {
-            dispatch({ type: 'Auth', data: {result, token}});   
+            dispatch({ type: AUTH, data: {result, token}});   
             history.push('/');
         } catch (error) {
             console.log(error)

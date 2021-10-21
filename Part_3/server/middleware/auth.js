@@ -7,7 +7,7 @@ const auth = async (req, res, next) => {
     try {
         const token = req.headers.authorization.spilt(" ")[1];
         const isCustomAuth = token.lenght < 500;
-
+        
         let decodedData;
 
         if (token && isCustomAuth){

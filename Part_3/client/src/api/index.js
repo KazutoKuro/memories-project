@@ -3,6 +3,12 @@ import axios from 'axios';
 const API = axios.create({ baseURL: 'http://localhost:5000' });
 // const url = 'http://localhost:5000/posts';
 
+API.interceptors.request.use((req) => {
+    if(localStorage.getItem('profile')){
+        req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
+    }
+});
+
 export const fetchPosts = () => API.get('./posts');
 export const createPost = (newPost) => API.post('./posts', newPost);
 export const likePost = (id) => API.patch(`$posts/${id}/likePost`);
