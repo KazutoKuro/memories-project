@@ -34,6 +34,7 @@ const Home = () => {
     if(search.trim() || tags){
       //dispatch -> fetch search post
       dispatch(getPostsBySearch({ search, tags: tags.join(',')}));
+      history.push(`/posts/sesrch?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
     } else {
       history.push('/');
     }
@@ -57,7 +58,7 @@ const Home = () => {
           <Grid item xs={12} sm={6} md={9}>
             <Posts setCurrentId={setCurrentId} />
           </Grid>
-          <Grid item xs={12} sm={6} md={9}>
+          <Grid item xs={12} sm={6} md={3}>
             <AppBar className={classes.appBarSearch} position="static" color="inherit">
               <TextField 
                 name="search"
