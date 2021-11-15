@@ -12,10 +12,13 @@ const CommectSection = ({ post }) => {
     const user = JSON.parse(localStorage.getItem('profile'));
     const dispatch = useDispatch();
 
-    const handleClick = () => {
+    const handleClick = async () => {
         const finalComment =`${user.result.name}: ${comment}`;
 
-        dispatch(commentPost(finalComment, post._id));
+        const newComments = await dispatch(commentPost(finalComment, post._id));
+
+        setComments(newComments);
+        setComment('');
     };
 
     return(
@@ -23,7 +26,7 @@ const CommectSection = ({ post }) => {
             <div className={classes.commentsOuterContainer}>
                 <div className={classes.commentsInnerContainer}>
                     <Typography gutterBottom variant="h6">Comments</Typography>
-                    {comments.map((c, i) => (
+                    {comments?.map((c, i) => (
                         <Typography key={i} gutterBottom variant="subtitle1">
                             {c}
                         </Typography>
